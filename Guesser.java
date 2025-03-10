@@ -4,84 +4,95 @@ import java.util.Scanner;
 
 public class Guesser {
 
-    public static void main(String[] args) {
-        new Guesser();
+    public static void main(String[] args){
+        new Guesser(); // Creates new instance of Guesser
     } // end main
 
-    public Guesser() {
-        Menu();
+    public Guesser(){
+        Menu(); // Calls Menu and starts program.
     } // end constructor
 
-    public void Menu() {
+    public void Menu(){
         boolean runMenu = true;
         boolean runGame = true;
-        Scanner menu = new Scanner(System.in); // Create scanner once
+        Scanner menu = new Scanner(System.in); // Create scanner once for whole program
 
-        while (runMenu) {
-            System.out.println("\nWelcome to the Random Number Guesser Game!");
-            System.out.println("Please Select from the Following:");
-            System.out.println("1. Human Guesser");
-            System.out.println("2. Computer Guesser");
-            System.out.println("Type 'q' or 'quit' to Quit");
+        while(runMenu){
+            System.out.println("\033[4m" + "\nWelcome to the Random Number Guesser Game!" + "\033[0m");
+            System.out.println("*Please Select from the Following:");
+            pause(500);
+            System.out.println("**1. Human Guesser");
+            pause(500);
+            System.out.println("**2. Computer Guesser");
+            pause(800);
+            System.out.println("\nType 'q' or 'quit' to Quit");
             
             String input = menu.nextLine();
 
             try {
 
-                if (input.equals("1")) {
+                if(input.equals("1")){
                     runGame = true;
-                    System.out.println("You have selected 'Human Guesser.' Loading now.");
-                    Computer(menu);  // Call HumanGuesser
+                    System.out.println("You have selected 'Human Guesser.'\nLoading now. . .");
+                    pause(1000);
+                    Computer(menu);  // Call Computer Method with same Scanner from Menu()
                     while (runGame) {
                         boolean continuePlaying = Computer(menu);
                         if (!continuePlaying) {
-                            runGame = false; // Exit back to menu
+                            runGame = false;
                         } // end if
                     } // end while
                 } // end if
-                else if (input.equals("2")) {
+                else if(input.equals("2")){
                     runGame = true;
-                    System.out.println("You have selected 'Computer Guesser.' Loading now.");
-                    Human(menu);  // Call the Computer method with Scanner
-                  //System.out.println("Under Development. Try Again Later!!");
-                    while (runGame) {
+                    System.out.println("You have selected 'Computer Guesser.'\nLoading now. . .");
+                    pause(1000);
+                    Human(menu);  // Call the Human Method with same Scanner from Menu()
+
+                    while(runGame){
                         boolean continuePlaying = Human(menu);
                         if (!continuePlaying) {
                             runGame = false; // Exit back to menu
                         } // end if
                     } // end while
                 } // end if
-                else if (input.equals("3") || input.equals("quit") || input.equals("q")) {
-                    System.out.println("Thank you for Playing!!");
+                else if(input.equalsIgnoreCase("quit") || input.equalsIgnoreCase("q")){ // checks user input ignoring case sensitivity
+                    pause(100);
+                    System.out.println("\nThank you for Playing!!");
+                    pause(200);
                     runMenu = false;
                 } // end if
-                else {
+                else{
                     System.out.println("Please Enter a Valid Number\n");
                 } // end else
             } // end try
-            catch (NumberFormatException e) { // catch num conversion error
+            catch(NumberFormatException e){ // Catch num conversion error (catches anything that isnt a number)
                 System.out.println("Please Enter a Valid Number\n");
             } // end catch
         } // end while
 
-        menu.close(); // Close Scanner when program is terminated
+        menu.close(); // Close Scanner when program is about to be terminated
     } // end Menu
 
-    public boolean Computer(Scanner input) {
+    public boolean Computer(Scanner input){
         Random rng = new Random();
-        int randInt = rng.nextInt(100) + 1;  // rng 1-100 (had issues with generating numbers 101 and 0 before)
-        System.out.println("Please Guess a Number 1-100. The Computer Will Hint 'Lower' or 'Higher.'\n");
+        int randInt = rng.nextInt(100) + 1;  // Random Num Gen 1-100 (had issues with generating numbers including 0 and 101 before). Only runs once per cycle.
+
+        System.out.println("\033[4m" + "Computer-Generated Mode!" + "\033[0m");
+        System.out.println("*Please Guess a Number 1-100. The Computer Will Hint 'Lower' or 'Higher.'");
+        System.out.println("*Enter 'q' to Quit. (In Some Cases May Need to Enter 'q' Twice)");
 
         while(true){
-            System.out.print("Please Input a Number or type 'q' to Quit: ");
+            System.out.print("\nPlease Input a Number or Type 'q' to Quit: ");
             String userNum = input.nextLine();
             
-            if(userNum.equals("q")){
-                System.out.println("Returning to the Main Menu...");
+            if(userNum.equalsIgnoreCase("q")){ // Checks user input while ignoring case sensitivity for q or Q
+                System.out.println("Returning to the Main Menu. . . ");
+                pause(200);
                 return false;
             }
 
-            try {
+            try{
                 int userNumInt = Integer.parseInt(userNum); // Convert input to integer
 
                 if(userNumInt > randInt){
@@ -96,47 +107,47 @@ public class Guesser {
                 } // end else
             } // end try
         
-            catch(NumberFormatException e){ // catch num conversion error
+            catch(NumberFormatException e){ // Catch incorrect input
                 System.out.println("Please Enter a Valid Number.\n");
             } // end catch
         
         } // end while
     } // end Computer
 
-
-
-
     // User Generated Numbers
-    public boolean Human(Scanner input) {
+    public boolean Human(Scanner input){
         double lBound = 1;
         double uBound = 100;
         double guess = 50;
-        //System.out.println("*Human Guesser mode is currently under development.");
-        System.out.println("*Please Think of a Number 1-100. The Computer will Guess What it is.");
+
+        System.out.println("\033[4m" + "Computer-Guesser Mode!" + "\033[0m");
+        System.out.println("\n*Please Think of a Number 1-100. The Computer will Guess What it is.");
+        System.out.println("*Do Not Change Your Number After Program Has Started. . .");
         System.out.println("*Please Respond with 'l' to Say Guess Lower, 'h' to Guess Higher, or 'c' for Correct.");
-        System.out.println("*Input 'q' to Quit and Return to the Main Menu!\n");
+        System.out.println("*Enter 'q' to Quit. (In Some Cases May Need to Enter 'q' Twice)");
 
         while(true){
             System.out.println("My Guess Is: " + Math.round(guess) + ". Is This Correct?\n");
             String user = input.nextLine();
-            if(user.equals("q")){
+            if(user.equalsIgnoreCase("q")){ // checks input ignoring case sensitivity
                 System.out.println("Returning to Main Menu. . .");
-                return false; // return false and leave loop
+                pause(200);
+                return false;
             } // end if
 
             else{
 
                 try{
 
-                    if(user.equals("h")){
+                    if(user.equalsIgnoreCase("h")){
                         lBound = guess + 1;
                         guess = (lBound + uBound) / 2;
                     } // end if
-                    else if(user.equals("l")){
+                    else if(user.equalsIgnoreCase("l")){
                         uBound = guess - 1;
                         guess = (lBound + uBound) / 2;
                     } // end if
-                    else if(user.equals("c")){
+                    else if(user.equalsIgnoreCase("c")){
                         System.out.println("\u001B[4mOh Fun! The Number was: " + Math.round(guess) + "!\u001B[0m\n");
                         return true;
                     } // end if
@@ -145,7 +156,7 @@ public class Guesser {
                     } // end else
                 } // end try
 
-                catch(NumberFormatException e){ // catch num conversion error
+                catch(NumberFormatException e){ // Catch incorrect input
                     System.out.println("Invalid input. Please enter 'l', 'h', 'c', or 'q'.\n");
                 } // end catch
             
@@ -154,4 +165,17 @@ public class Guesser {
         } // end while
     
     } // end Human
+
+    // Makes program wait for 'n' milliseconds before continuing (1000ms = 1s). Can easily be disabled, as it is just for visuals.
+    public void pause(int n){
+
+        try{
+            Thread.sleep(n);
+        } // end try
+
+        catch(InterruptedException e){ // If the program gets interrupted or times out, print Stack Logs
+            e.printStackTrace();
+        } // end catch
+
+    } // end pause
 } // end Guesser Class
