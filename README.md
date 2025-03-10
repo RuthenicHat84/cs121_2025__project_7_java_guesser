@@ -17,6 +17,9 @@ where users are free to try a different game or quit.
 * public bool Computer (computer generated number)
 * public bool Human (human generated number)
 
+### Aditional Flourishes
+* use of Thread to add in delays to certain parts of the program. For aesthetics (called "pause(n)" in the program), where n is number of ms the program waits for).
+
 
 ## Menu()
 * Creates a UI for users, and calls the programs.
@@ -39,7 +42,7 @@ where users are free to try a different game or quit.
                 boolean continuePlaying set to the value of Human()
                 if continuePlaying returns false:
                     runGame = false
-        if input is 3:
+        if input is 'q' or 'quit':
             isRunning = false
 
     when program is about to be terminated, close Scanner
