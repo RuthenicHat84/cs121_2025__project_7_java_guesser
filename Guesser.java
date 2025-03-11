@@ -35,7 +35,7 @@ public class Guesser {
                     runGame = true;
                     System.out.println("You have selected 'Human Guesser.'\nLoading now. . .");
                     pause(1000);
-                    Computer(menu);  // Call Computer Method with same Scanner from Menu()
+                    Computer(menu);  // Call Computer Method with a Scanner passed on by Menu()'s menu instead of making a brand new Scanner.
                     while (runGame) {
                         boolean continuePlaying = Computer(menu);
                         if (!continuePlaying) {
@@ -47,7 +47,7 @@ public class Guesser {
                     runGame = true;
                     System.out.println("You have selected 'Computer Guesser.'\nLoading now. . .");
                     pause(1000);
-                    Human(menu);  // Call the Human Method with same Scanner from Menu()
+                    Human(menu);  // Call the Human Method with a Scanner passed on by Menu()'s menu instead of making a brand new Scanner.
 
                     while(runGame){
                         boolean continuePlaying = Human(menu);
