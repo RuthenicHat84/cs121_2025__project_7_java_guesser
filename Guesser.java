@@ -19,11 +19,11 @@ public class Guesser {
 
         while(runMenu){
             System.out.println("\033[4m" + "\nWelcome to the Random Number Guesser Game!" + "\033[0m");
-            System.out.println("*Please Select from the Following:");
+            System.out.println("*Please Type the Number of the Mode You Would Like:");
             pause(500);
-            System.out.println("**1. Human Guesser");
+            System.out.println("1.) Human Guesser");
             pause(500);
-            System.out.println("**2. Computer Guesser");
+            System.out.println("2.) Computer Guesser");
             pause(800);
             System.out.println("\nType 'q' or 'quit' to Quit");
             
@@ -121,13 +121,17 @@ public class Guesser {
         float guess = 50;    // using floats for memory purposes. doubles would be better if I was using more complex decimals in the answers.
 
         System.out.println("\033[4m" + "Computer-Guesser Mode!" + "\033[0m");
+        pause(200);
         System.out.println("\n*Please Think of a Number 1-100. The Computer will Guess What it is.");
+        pause(200);
         System.out.println("*Do Not Change Your Number After Program Has Started. . .");
+        pause(200);
         System.out.println("*Please Respond with 'l' to Say Guess Lower, 'h' to Guess Higher, or 'c' for Correct.");
+        pause(200);
         System.out.println("*Enter 'q' to Quit. (In Some Cases May Need to Enter 'q' Twice)");
-
         while(true){
-            System.out.println("My Guess Is: " + Math.round(guess) + ". Is This Correct?\n");
+            pause(500);
+            System.out.println("\nMy Guess Is: " + Math.round(guess) + ". Is This Correct?\n");
             String user = input.nextLine();
             if(user.equalsIgnoreCase("q")){ // checks input ignoring case sensitivity
                 System.out.println("Returning to Main Menu. . .");
@@ -149,6 +153,7 @@ public class Guesser {
                     } // end if
                     else if(user.equalsIgnoreCase("c")){
                         System.out.println("\u001B[4mOh Fun! The Number was: " + Math.round(guess) + "!\u001B[0m\n");
+                        pause(500);
                         return true;
                     } // end if
                     else{
