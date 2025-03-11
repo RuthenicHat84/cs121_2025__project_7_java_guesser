@@ -116,9 +116,9 @@ public class Guesser {
 
     // User Generated Numbers
     public boolean Human(Scanner input){
-        double lBound = 1;
-        double uBound = 100;
-        double guess = 50;
+        float lBound = 1;    // using floats for memory purposes. doubles would be better if I was using more complex decimals in the answers.
+        float uBound = 100;  // using floats for memory purposes. doubles would be better if I was using more complex decimals in the answers.
+        float guess = 50;    // using floats for memory purposes. doubles would be better if I was using more complex decimals in the answers.
 
         System.out.println("\033[4m" + "Computer-Guesser Mode!" + "\033[0m");
         System.out.println("\n*Please Think of a Number 1-100. The Computer will Guess What it is.");

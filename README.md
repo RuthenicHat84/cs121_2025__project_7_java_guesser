@@ -30,25 +30,25 @@ where users are free to try a different game or quit.
         get input from user
         if input is 1:
             bool runGame = true
-            Computer()
+            Computer(menu) // calling the method while borrowing the Scanner 'menu'
             while (runGame):
                 boolean continuePlaying set to Computer()
                 if continuePlaying returns false:
                     runGame = false
         if input is 2:
             bool runGame = true
-            Human()
+            Human(menu) // calling the method while borrowing the Scanner 'menu'
             while (runGame):
                 boolean continuePlaying set to the value of Human()
                 if continuePlaying returns false:
                     runGame = false
         if input is 'q' or 'quit':
-            isRunning = false
+            runMenu = false
 
     when program is about to be terminated, close Scanner
 ```
 
-## Computer()
+## bool Computer()
 * Computer generates a number 1-100. User tries to guess it. Computer provides feedback.
 ```
     create a random number rng using Random Class when the Computer Method is called
@@ -65,18 +65,18 @@ where users are free to try a different game or quit.
                     print "too low. guess higher"
                 else:
                     print "correct"
-                    return true (so game loops until user quits)
-            catch NumberFormatException: (this is so it won't accept non-number answers)
+                    return true  // so game loops until user quits
+            catch NumberFormatException: // this is so it won't accept non-number answers
                     print "try again"
 
 ```
 
-## Human()
+## bool Human()
 * User Thinks of Number and Computer Guesses it. User provides feedback.
 ```
-double lower bound = 1
-double upper bound = 100
-double guess = 50
+float lower bound = 1   // using float for better memory management.
+float upper bound = 100 // using float for better memory management.
+float guess = 50        // using float for better memory management.
 
 print instructions
 
@@ -90,13 +90,13 @@ while(true):
         try:
             if input is 'h':
                 lower bound = guess + 1
-                guess = (lower bound - upper bound) / 2
+                guess = (lower bound + upper bound) / 2
             if input is 'l':
                 upper bound = guess - 1
-                calculate guess
+                calculate guess (same as above)
             if input is 'c':
                 print winning message
-                return true
+                return true // so game loops until user quits
             else:
                 print error message
         catch number conversion error:
