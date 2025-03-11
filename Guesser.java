@@ -18,8 +18,8 @@ public class Guesser {
         Scanner menu = new Scanner(System.in); // Create scanner once for whole program
 
         while(runMenu){
-            System.out.println("\033[4m" + "\nWelcome to the Random Number Guesser Game!" + "\033[0m");
-            System.out.println("*Please Type the Number of the Mode You Would Like:");
+            System.out.println("\033[4m" + "\n~~Welcome to the Random Number Guesser Game!~~" + "\033[0m");
+            System.out.println("*Please Type the Number of the Mode You Would Like:\n");
             pause(500);
             System.out.println("1.) Human Guesser");
             pause(500);
@@ -33,7 +33,7 @@ public class Guesser {
 
                 if(input.equals("1")){
                     runGame = true;
-                    System.out.println("You have selected 'Human Guesser.'\nLoading now. . .");
+                    System.out.println("\nYou have selected 'Human Guesser.'\nLoading now. . .");
                     pause(1000);
                     Computer(menu);  // Call Computer Method with a Scanner passed on by Menu()'s menu instead of making a brand new Scanner.
                     while (runGame) {
@@ -45,7 +45,7 @@ public class Guesser {
                 } // end if
                 else if(input.equals("2")){
                     runGame = true;
-                    System.out.println("You have selected 'Computer Guesser.'\nLoading now. . .");
+                    System.out.println("\nYou have selected 'Computer Guesser.'\nLoading now. . .");
                     pause(1000);
                     Human(menu);  // Call the Human Method with a Scanner passed on by Menu()'s menu instead of making a brand new Scanner.
 
@@ -58,7 +58,7 @@ public class Guesser {
                 } // end if
                 else if(input.equalsIgnoreCase("quit") || input.equalsIgnoreCase("q")){ // checks user input ignoring case sensitivity
                     pause(100);
-                    System.out.println("\nThank you for Playing!!");
+                    System.out.println("\nThank you for Playing!!\n\n");
                     pause(200);
                     runMenu = false;
                 } // end if
@@ -78,11 +78,15 @@ public class Guesser {
         Random rng = new Random();
         int randInt = rng.nextInt(100) + 1;  // Random Num Gen 1-100 (had issues with generating numbers including 0 and 101 before). Only runs once per cycle.
 
-        System.out.println("\033[4m" + "Computer-Generated Mode!" + "\033[0m");
+        System.out.println("\n\033[4m" + "~~Computer-Generated Mode!~~" + "\033[0m");
+        pause(200);
         System.out.println("*Please Guess a Number 1-100. The Computer Will Hint 'Lower' or 'Higher.'");
+        pause(200);
         System.out.println("*Enter 'q' to Quit. (In Some Cases May Need to Enter 'q' Twice)");
+        pause(200);
 
         while(true){
+            pause(500);
             System.out.print("\nPlease Input a Number or Type 'q' to Quit: ");
             String userNum = input.nextLine();
             
@@ -96,13 +100,17 @@ public class Guesser {
                 int userNumInt = Integer.parseInt(userNum); // Convert input to integer
 
                 if(userNumInt > randInt){
+                    pause(300);
                     System.out.println("Too High! Try Lower. . .\n");
                 } // end if
                 else if(userNumInt < randInt){
+                    pause(300);
                     System.out.println("Too Low! Try Higher. . .\n");
                 } // end if
                 else{
+                    pause(300);
                     System.out.println("Great Job! You guessed the number!!\n");
+                    pause(500);
                     return true; // Return true to restart the game with a new number
                 } // end else
             } // end try
@@ -120,7 +128,7 @@ public class Guesser {
         float uBound = 100;  // using floats for memory purposes. doubles would be better if I was using more complex decimals in the answers.
         float guess = 50;    // using floats for memory purposes. doubles would be better if I was using more complex decimals in the answers.
 
-        System.out.println("\033[4m" + "Computer-Guesser Mode!" + "\033[0m");
+        System.out.println("\033[4m" + "~~Computer-Guesser Mode!~~" + "\033[0m");
         pause(200);
         System.out.println("\n*Please Think of a Number 1-100. The Computer will Guess What it is.");
         pause(200);
@@ -152,7 +160,7 @@ public class Guesser {
                         guess = (lBound + uBound) / 2;
                     } // end if
                     else if(user.equalsIgnoreCase("c")){
-                        System.out.println("\u001B[4mOh Fun! The Number was: " + Math.round(guess) + "!\u001B[0m\n");
+                        System.out.println("Oh Fun! The Number was: " + Math.round(guess) + "!\n");
                         pause(500);
                         return true;
                     } // end if
@@ -175,7 +183,7 @@ public class Guesser {
     public void pause(int n){
 
         try{
-            Thread.sleep(n);
+            Thread.sleep(n); // puts program to 'sleep' for n milliseconds
         } // end try
 
         catch(InterruptedException e){ // If the program gets interrupted or times out, print Stack Logs
