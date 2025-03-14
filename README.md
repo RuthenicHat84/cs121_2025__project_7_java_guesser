@@ -13,7 +13,7 @@ where users are free to try a different game or quit.
 ### the Methods for the program are as follows:
 * public static void main()
 * public Guesser (constructor)
-* public void Menu()
+* public void Menu(controls the main and secondary ui and calls game methods)
 * public bool Computer (computer generated number)
 * public bool Human (human generated number)
 
