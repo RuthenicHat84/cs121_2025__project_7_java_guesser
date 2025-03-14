@@ -74,7 +74,7 @@ public class Guesser {
         menu.close(); // Close Scanner when program is about to be terminated
     } // end Menu
 
-    public boolean Computer(Scanner input){
+    public boolean Computer(Scanner input){ // Computer-Generated Number
         Random rng = new Random();
         int randInt = rng.nextInt(100) + 1;  // Random Num Gen 1-100 (had issues with generating numbers including 0 and 101 before). Only runs once per cycle.
 
@@ -123,7 +123,7 @@ public class Guesser {
     } // end Computer
 
     // User Generated Numbers
-    public boolean Human(Scanner input){
+    public boolean Human(Scanner input){ // Human-Generated Number
         float lBound = 1;    // using floats for memory purposes. doubles would be better if I was using more complex decimals in the answers.
         float uBound = 100;  // using floats for memory purposes. doubles would be better if I was using more complex decimals in the answers.
         float guess = 50;    // using floats for memory purposes. doubles would be better if I was using more complex decimals in the answers.
@@ -151,11 +151,11 @@ public class Guesser {
 
                 try{
 
-                    if(user.equalsIgnoreCase("h")){
+                    if(user.equalsIgnoreCase("h")){ // if the computer needs to guess higher, set lower bound to guess + 1
                         lBound = guess + 1;
                         guess = (lBound + uBound) / 2;
                     } // end if
-                    else if(user.equalsIgnoreCase("l")){
+                    else if(user.equalsIgnoreCase("l")){ // if the computer needs to guess lower, set upper bound to guess - 1
                         uBound = guess - 1;
                         guess = (lBound + uBound) / 2;
                     } // end if
