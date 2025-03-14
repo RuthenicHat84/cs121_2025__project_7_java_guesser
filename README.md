@@ -48,7 +48,7 @@ where users are free to try a different game or quit.
     when program is about to be terminated, close Scanner
 ```
 
-## bool Computer()
+## bool Computer(Scanner input) // so we don't need to make a new scanner for every method.
 * Computer generates a number 1-100. User tries to guess it. Computer provides feedback.
 ```
     create a random number rng using Random Class when the Computer Method is called
@@ -71,7 +71,7 @@ where users are free to try a different game or quit.
 
 ```
 
-## bool Human()
+## bool Human(Scanner input) // so we don't need to make a new scanner for every method.
 * User Thinks of Number and Computer Guesses it. User provides feedback.
 ```
 float lower bound = 1   // using float for better memory management.
