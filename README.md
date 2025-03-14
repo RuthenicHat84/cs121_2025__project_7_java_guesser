@@ -11,18 +11,16 @@ where users are free to try a different game or quit.
 
 
 ### the Methods for the program are as follows:
-* public static void main()
-* public Guesser (constructor)
-* public void Menu(controls the main and secondary ui and calls game methods)
-* public bool Computer (computer generated number)
-* public bool Human (human generated number)
-
-### Aditional Flourishes
-* use of Thread to add in delays to certain parts of the program. For aesthetics (called "pause(n)" in the program), where n is number of ms the program waits for).
+* public static void main() - makes new instance of Guesser()
+* public Guesser() - constructor
+* public void Menu() - controls the main and secondary ui and calls game methods
+* public bool Computer(Scanner input) - computer generated number
+* public bool Human(Scanner input) - human generated number
+* public void pause(int n) - adds visual pauses into program using Thread class for aesthetic reasons
 
 
 ## Menu()
-* Creates a UI for users, and calls the programs.
+* Creates and maintains two Menu UIs for users, and calls the programs.
 ```
     bool runMenu set to true
     while runMenu:
@@ -48,8 +46,8 @@ where users are free to try a different game or quit.
     when program is about to be terminated, close Scanner
 ```
 
-## bool Computer(Scanner input) // so we don't need to make a new scanner for every method.
-* Computer generates a number 1-100. User tries to guess it. Computer provides feedback.
+## bool Computer(Scanner input)
+* Computer generates a number 1-100. User tries to guess it. Computer provides feedback. Scanner input taken so there aren't unnecessary scanners being made
 ```
     create a random number rng using Random Class when the Computer Method is called
     while (true):
@@ -71,8 +69,8 @@ where users are free to try a different game or quit.
 
 ```
 
-## bool Human(Scanner input) // so we don't need to make a new scanner for every method.
-* User Thinks of Number and Computer Guesses it. User provides feedback.
+## bool Human(Scanner input)
+* User Thinks of Number and Computer Guesses it. User provides feedback. Scanner input taken so there aren't unnecessary scanners being made
 ```
 float lower bound = 1   // using float for better memory management.
 float upper bound = 100 // using float for better memory management.
@@ -101,5 +99,17 @@ while(true):
                 print error message
         catch number conversion error:
             print error message
+
+```
+
+## void pause(int n)
+* Made to allow for Thread Class integration without making the program bloated.
+```
+
+try:
+    Thread.sleep(n) // puts the program to sleep for n milliseconds
+
+catch(Interrupted Exception e): // if the program gets interrupted or crashes, print out the stack log.
+    e.printStackTrace
 
 ```
